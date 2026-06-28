@@ -1,16 +1,16 @@
-public class FinancialForecastTest {
+public class InvestmentCalculatorTest {
 
     public static void main(String[] args) {
 
-        double currentValue = 10000;
-        double growthRate = 0.10; // 10%
-        int years = 5;
+        double amount = 15000;
+        double rate = 0.08;
+        int years = 4;
 
-        double predictedValue = FinancialForecast.futureValue(currentValue, growthRate, years);
+        double finalAmount = InvestmentCalculator.calculateAmount(amount, rate, years);
 
-        System.out.println("Current Value : ₹" + currentValue);
-        System.out.println("Growth Rate   : " + (growthRate * 100) + "%");
-        System.out.println("Years         : " + years);
-        System.out.printf("Future Value  : ₹%.2f%n", predictedValue);
+        System.out.println("Initial Amount : ₹" + amount);
+        System.out.println("Interest Rate  : " + (rate * 100) + "%");
+        System.out.println("Duration       : " + years + " years");
+        System.out.printf("Final Amount   : ₹%.2f%n", finalAmount);
     }
 }
