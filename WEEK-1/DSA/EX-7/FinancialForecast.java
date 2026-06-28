@@ -1,14 +1,11 @@
-public class FinancialForecast {
+public class InvestmentCalculator {
 
-    // Recursive method to calculate future value
-    public static double futureValue(double currentValue, double growthRate, int years) {
+    public static double calculateAmount(double amount, double rate, int years) {
 
-        // Base case
         if (years == 0) {
-            return currentValue;
+            return amount;
         }
 
-        // Recursive call
-        return futureValue(currentValue * (1 + growthRate), growthRate, years - 1);
+        return calculateAmount(amount * (1 + rate), rate, years - 1);
     }
 }
