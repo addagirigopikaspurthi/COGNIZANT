@@ -1,61 +1,58 @@
-CREATE DATABASE IF NOT EXISTS BankDB;
-USE BankDB;
+CREATE DATABASE IF NOT EXISTS FinanceDB;
+USE FinanceDB;
 
-DROP TABLE IF EXISTS Loans;
-DROP TABLE IF EXISTS Customers;
+DROP TABLE IF EXISTS Borrowings;
+DROP TABLE IF EXISTS Clients;
 
-CREATE TABLE Customers(
-    CustomerID INT PRIMARY KEY,
-    CustomerName VARCHAR(50),
-    Age INT,
-    Balance DECIMAL(10,2),
-    IsVIP BOOLEAN
+CREATE TABLE Clients(
+    ClientID INT PRIMARY KEY,
+    ClientName VARCHAR(50),
+    ClientAge INT,
+    AccountBalance DECIMAL(10,2),
+    PremiumCustomer BOOLEAN
 );
 
-CREATE TABLE Loans(
-    LoanID INT PRIMARY KEY,
-    CustomerID INT,
-    InterestRate DECIMAL(5,2),
-    DueDate DATE,
-    FOREIGN KEY(CustomerID) REFERENCES Customers(CustomerID)
+CREATE TABLE Borrowings(
+    BorrowID INT PRIMARY KEY,
+    ClientID INT,
+    RateOfInterest DECIMAL(5,2),
+    RepaymentDate DATE,
+    FOREIGN KEY(ClientID) REFERENCES Clients(ClientID)
 );
 
-INSERT INTO Customers VALUES
-(101,'Ravi',65,12000,FALSE),
-(102,'Priya',45,8000,FALSE),
-(103,'Rahul',70,15000,FALSE);
+INSERT INTO Clients VALUES
+(201,'Arjun',68,18000,FALSE),
+(202,'Sneha',35,7000,FALSE),
+(203,'Kiran',72,22000,FALSE);
 
-INSERT INTO Loans VALUES
-(201,101,9.00,CURDATE()+INTERVAL 10 DAY),
-(202,102,10.00,CURDATE()+INTERVAL 40 DAY),
-(203,103,8.00,CURDATE()+INTERVAL 20 DAY);
+INSERT INTO Borrowings VALUES
+(301,201,8.50,CURDATE()+INTERVAL 12 DAY),
+(302,202,9.75,CURDATE()+INTERVAL 45 DAY),
+(303,203,7.50,CURDATE()+INTERVAL 18 DAY);
 
-SELECT * FROM Customers;
-SELECT * FROM Loans;
+SELECT * FROM Clients;
+SELECT * FROM Borrowings;
 
--- Scenario 1
-UPDATE Loans
-SET InterestRate = InterestRate - 1
-WHERE CustomerID IN (
-    SELECT CustomerID
-    FROM Customers
-    WHERE Age > 60
+UPDATE Borrowings
+SET RateOfInterest = RateOfInterest - 1
+WHERE ClientID IN (
+    SELECT ClientID
+    FROM Clients
+    WHERE ClientAge > 60
 );
 
-SELECT * FROM Loans;
+SELECT * FROM Borrowings;
 
--- Scenario 2
-UPDATE Customers
-SET IsVIP = TRUE
-WHERE Balance > 10000;
+UPDATE Clients
+SET PremiumCustomer = TRUE
+WHERE AccountBalance > 15000;
 
-SELECT * FROM Customers;
+SELECT * FROM Clients;
 
--- Scenario 3
 SELECT
-CustomerID,
-LoanID,
-DueDate,
-'Reminder: Loan Due Soon' AS Message
-FROM Loans
-WHERE DueDate BETWEEN CURDATE() AND CURDATE()+INTERVAL 30 DAY;
+ClientID,
+BorrowID,
+RepaymentDate,
+'Reminder: Payment Due Soon' AS Message
+FROM Borrowings
+WHERE RepaymentDate BETWEEN CURDATE() AND CURDATE()+INTERVAL 30 DAY;
