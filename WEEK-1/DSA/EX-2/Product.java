@@ -1,18 +1,18 @@
-public class Product {
+public class Item {
 
-    int productId;
-    String productName;
-    String category;
+    int itemId;
+    String itemName;
+    String itemCategory;
 
-    public Product(int productId, String productName, String category) {
-        this.productId = productId;
-        this.productName = productName;
-        this.category = category;
+    public Item(int itemId, String itemName, String itemCategory) {
+        this.itemId = itemId;
+        this.itemName = itemName;
+        this.itemCategory = itemCategory;
     }
 
-    public void displayProduct() {
-        System.out.println("Product ID: " + productId);
-        System.out.println("Product Name: " + productName);
-        System.out.println("Category: " + category);
+    public void showItem() {
+        System.out.println("Item ID: " + itemId);
+        System.out.println("Item Name: " + itemName);
+        System.out.println("Item Category: " + itemCategory);
     }
 }
