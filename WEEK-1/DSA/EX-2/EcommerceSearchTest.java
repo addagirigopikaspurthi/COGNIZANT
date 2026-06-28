@@ -1,37 +1,35 @@
-public class EcommerceSearchTest {
+public class StoreSearchTest {
 
     public static void main(String[] args) {
 
-        Product[] products = {
+        Item[] items = {
 
-                new Product(101, "Laptop", "Electronics"),
-                new Product(102, "Shoes", "Fashion"),
-                new Product(103, "Phone", "Electronics"),
-                new Product(104, "Watch", "Accessories"),
-                new Product(105, "Bag", "Fashion")
+                new Item(201, "Tablet", "Electronics"),
+                new Item(202, "Sneakers", "Footwear"),
+                new Item(203, "Headphones", "Electronics"),
+                new Item(204, "Wallet", "Accessories"),
+                new Item(205, "Backpack", "Travel")
 
         };
 
-        int searchId = 103;
+        int searchId = 203;
 
-        // Linear Search
-        System.out.println("Linear Search Result:");
+        System.out.println("Linear Search:");
 
-        Product result1 = SearchAlgorithms.linearSearch(products, searchId);
+        Item result1 = ItemSearch.findLinear(items, searchId);
 
         if (result1 != null)
-            result1.displayProduct();
+            result1.showItem();
         else
-            System.out.println("Product not found");
+            System.out.println("Item not found");
 
-        // Binary Search
-        System.out.println("\nBinary Search Result:");
+        System.out.println("\nBinary Search:");
 
-        Product result2 = SearchAlgorithms.binarySearch(products, searchId);
+        Item result2 = ItemSearch.findBinary(items, searchId);
 
         if (result2 != null)
-            result2.displayProduct();
+            result2.showItem();
         else
-            System.out.println("Product not found");
+            System.out.println("Item not found");
     }
 }
