@@ -1,37 +1,35 @@
-public class SearchAlgorithms {
+public class ItemSearch {
 
-    // Linear Search
-    public static Product linearSearch(Product[] products, int searchId) {
+    public static Item findLinear(Item[] items, int id) {
 
-        for (Product product : products) {
-            if (product.productId == searchId) {
-                return product;
+        for (Item item : items) {
+            if (item.itemId == id) {
+                return item;
             }
         }
 
         return null;
     }
 
-    // Binary Search
-    public static Product binarySearch(Product[] products, int searchId) {
+    public static Item findBinary(Item[] items, int id) {
 
-        int left = 0;
-        int right = products.length - 1;
+        int low = 0;
+        int high = items.length - 1;
 
-        while (left <= right) {
+        while (low <= high) {
 
-            int mid = (left + right) / 2;
+            int mid = (low + high) / 2;
 
-            if (products[mid].productId == searchId) {
-                return products[mid];
+            if (items[mid].itemId == id) {
+                return items[mid];
             }
 
-            else if (products[mid].productId < searchId) {
-                left = mid + 1;
+            else if (items[mid].itemId < id) {
+                low = mid + 1;
             }
 
             else {
-                right = mid - 1;
+                high = mid - 1;
             }
         }
 
